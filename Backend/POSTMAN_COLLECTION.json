@@ -1,0 +1,409 @@
+{
+  "info": {
+    "name": "Bank Savings API",
+    "description": "API untuk sistem simpanan bank dengan perhitungan bunga otomatis",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Deposito Types",
+      "item": [
+        {
+          "name": "Seed Deposito Types (Bronze, Silver, Gold)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  { \"name\": \"Bronze\", \"yearlyReturn\": 3 },\n  { \"name\": \"Silver\", \"yearlyReturn\": 5 },\n  { \"name\": \"Gold\", \"yearlyReturn\": 7 }\n]"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/deposito-types",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "deposito-types"]
+            }
+          }
+        },
+        {
+          "name": "Get All Deposito Types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/deposito-types?page=1&limit=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "deposito-types"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Custom Deposito Type",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Platinum\",\n  \"yearlyReturn\": 9\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/deposito-types",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "deposito-types"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/customers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "customers"]
+            }
+          }
+        },
+        {
+          "name": "Get All Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/customers?page=1&limit=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "customers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Customer by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/customers/:customerId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "customers", ":customerId"],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/customers/:customerId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "customers", ":customerId"],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Customer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/customers/:customerId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "customers", ":customerId"],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<CUSTOMER_ID>\",\n  \"depositoTypeId\": \"<DEPOSITO_TYPE_ID>\",\n  \"balance\": 1000000,\n  \"depositDate\": \"2024-01-01T00:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts"]
+            }
+          }
+        },
+        {
+          "name": "Get All Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts?page=1&limit=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Account by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts/:accountId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts", ":accountId"],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Accounts by Customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts/customer/:customerId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts", "customer", ":customerId"],
+              "variable": [
+                {
+                  "key": "customerId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Account",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"balance\": 1500000\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts/:accountId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts", ":accountId"],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Account",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts/:accountId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts", ":accountId"],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Withdrawal",
+      "item": [
+        {
+          "name": "Calculate Withdrawal (Simulasi)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"withdrawalDate\": \"2024-12-31T00:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts/:accountId/calculate-withdrawal",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts", ":accountId", "calculate-withdrawal"],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Perform Withdrawal (Penarikan Nyata)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"withdrawalDate\": \"2024-12-31T00:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/v1/accounts/:accountId/withdraw",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["v1", "accounts", ":accountId", "withdraw"],
+              "variable": [
+                {
+                  "key": "accountId",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
